@@ -18,7 +18,7 @@ An ATM Simulation program that I programmed in the C language(C11). Based on a s
 Richard Wellman:
 
 Username: rwellman
-Password: cyan54q
+Password: cyan541
 
 
 Susan Downings:
