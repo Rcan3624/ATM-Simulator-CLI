@@ -37,3 +37,6 @@ John Smith:
 
 Username: jsmith
 Password: kr0n0s
+
+
+Entering "shutdown" or "quit" in the login menu will exit the program. Will look into a better implementation in future updates.
