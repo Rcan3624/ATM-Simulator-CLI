@@ -6,14 +6,13 @@
 #define ATM_ACCOUNT_OPTIONS_H
 
 
-int deposit(void);
-int withdraw(void);
-int balance(void);
-int transfer(void);
+void deposit(void);
+void withdraw(void);
+void balance(void);
+void transfer(void);
 void transactionOption(void);
 int transactionValidation(void);
 int checkingOverdraftPrevention(void);
 int savingsOverdraftPrevention(void);
 
 #endif //ATM_ACCOUNT_OPTIONS_H
-

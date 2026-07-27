@@ -2,7 +2,6 @@
 // Created by ryan on 6/21/26.
 //
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,20 +9,19 @@
 #include "userlogin.h"
 #include "account-options.h"
 
-char userLogin[22];  // Went with a 22-character limit since the SSA has a 21 letter length limit for surnames
-char userPassword[16];
+#define WAIT_FOR_INPUT_LOGIN
+
 
 short int userIndex = 0; // Index for selecting accounts based on the logged-in user
 
-struct Customer {
-    char *fullName;
-    char *userName;
-    char *password;
-};
+void login(void) {
 
+    char userLogin[22];  // Went with a 22-character limit since the SSA has a 21 letter length limit for surnames
 
+    struct Customer {
+        char *userName;
+    };
 
-int login(void) {
 
     struct Customer customer1 = {.userName = "rwellman"};
     struct Customer customer2 = {.userName = "sdownings"};
@@ -32,8 +30,6 @@ int login(void) {
 
 
     short int usernameAttempt = 0;
-    
-    puts("Welcome");
 
 
     while (usernameAttempt <= 3) {
@@ -53,7 +49,6 @@ int login(void) {
             userIndex += 1;
             system("cls");
             password();
-            return 0;
         }
 
         // Login for Jane Doe
@@ -71,32 +66,48 @@ int login(void) {
         }
 
         // Exit program
-        else if (strcmp("shutdown", userLogin) ==0) {
+        else if (strcmp("shutdown", userLogin) ==0 || strcmp("quit", userLogin) ==0 || strcmp("exit", userLogin) ==0) {
             // Prevent CMD from immediately closing May look into better implementation in future updates
             system("cls");
             puts("Goodbye");
             puts("Press enter to continue");
+            getchar();  // Flush input buffer to prevent newline bug
             getchar(); // Wait for user to press enter.
-            getchar();
             exit(0);
         }
 
         else {
-            system("cls");
+
             puts("User not found");
+            puts("Press enter to continue");
+            getchar();  // Flush input buffer to prevent newline bug
+            getchar(); // Wait for user to press enter.
+            system("cls");
             usernameAttempt += 1;
+
         }
     }
+    
     // Display after failed username attempts
     puts("ATM restriction is now in place. This program will now close.\n");
+    puts("Press enter to continue");
+    getchar();  // Flush input buffer to prevent newline bug
     getchar(); // Wait for user to press enter.
-    getchar();
-    exit(0);
+    system("cls");
 
+    exit(0);
 }
 
 
-int password(void) {
+void password(void) {
+
+    char userPassword[16];
+
+    struct Customer {
+        char *fullName;
+        char *password;
+    };
+
 
     short int passwordAttempt = 0;
 
@@ -106,8 +117,6 @@ int password(void) {
     struct Customer customer4 = {.fullName="John Smith", .password = "kr0n0s"};
 
 
-
-
     while (passwordAttempt <= 3) {
         printf("Enter password: ");
         scanf("%16s", userPassword);
@@ -115,6 +124,7 @@ int password(void) {
         if (strcmp(customer1.password, userPassword) ==0) {
             system("cls");
             printf("Hello %s\n", customer1.fullName);
+            getchar();  // Flush input buffer to prevent newline bug
             transactionOption();
 
 
@@ -123,6 +133,7 @@ int password(void) {
         else if (strcmp(customer2.password, userPassword) ==0) {
             system("cls");
             printf("Hello %s\n", customer2.fullName);
+            getchar();  // Flush input buffer to prevent newline bug
             transactionOption();
 
         }
@@ -130,6 +141,7 @@ int password(void) {
         else if (strcmp(customer3.password, userPassword) ==0) {
             system("cls");
             printf("Hello %s\n", customer3.fullName);
+            getchar();  // Flush input buffer to prevent newline bug
             transactionOption();
 
         }
@@ -137,24 +149,18 @@ int password(void) {
         else if (strcmp(customer4.password, userPassword) ==0) {
             system("cls");
             printf("Hello %s\n", customer4.fullName);
+            getchar();  // Flush input buffer to prevent newline bug
             transactionOption();
 
         }
 
         else {
-            system("cls");
             puts("Incorrect password");
+            puts("Press enter to continue");
+            getchar();  // Flush input buffer to prevent newline bug
+            getchar(); // Wait for user to press enter.
+            system("cls");
             passwordAttempt += 1;
         }
     }
-
-
 }
-
-
-
-
-
-
-
-
