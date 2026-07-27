@@ -22,7 +22,7 @@ void login(void) {
         char *userName;
     };
 
-
+    // Define username for customers
     struct Customer customer1 = {.userName = "rwellman"};
     struct Customer customer2 = {.userName = "sdownings"};
     struct Customer customer3 = {.userName = "jdoe"};
@@ -32,11 +32,10 @@ void login(void) {
     short int usernameAttempt = 0;
 
 
+    // Check to see if the entered username matches any existing customer usernames
     while (usernameAttempt <= 3) {
         printf("Enter username: ");
         scanf("%22s", userLogin);
-
-        // Using strcmp like this is the only way to properly compare usernames. "Strings" are a headache to work with in C.
 
         // Login for Richard Wellman
         if (strcmp(customer1.userName, userLogin) ==0) {
@@ -77,7 +76,7 @@ void login(void) {
         }
 
         else {
-
+            // Display if the user types an unknown username
             puts("User not found");
             puts(WAIT_FOR_INPUT_LOGIN);
             getchar();  // Flush input buffer to prevent newline bug
@@ -111,16 +110,19 @@ void password(void) {
 
     short int passwordAttempt = 0;
 
+    // Define fullname and password for customers
     struct Customer customer1 = {.fullName="Richard Wellman", .password = "cyan541"};
     struct Customer customer2 = {.fullName="Susan Downings", .password = "cats4123"};
     struct Customer customer3 = {.fullName="Jane Doe", .password = "Pass@123"};
     struct Customer customer4 = {.fullName="John Smith", .password = "kr0n0s"};
 
 
+    // Check to see if the user password matches any existing customer passwords
     while (passwordAttempt <= 3) {
         printf("Enter password: ");
         scanf("%16s", userPassword);
 
+        // Password and full name for Richard Wellman
         if (strcmp(customer1.password, userPassword) ==0) {
             system("cls");
             printf("Hello %s\n", customer1.fullName);
@@ -130,6 +132,7 @@ void password(void) {
 
         }
 
+        // Password and full name for Susan Downings
         else if (strcmp(customer2.password, userPassword) ==0) {
             system("cls");
             printf("Hello %s\n", customer2.fullName);
@@ -138,6 +141,7 @@ void password(void) {
 
         }
 
+        // Password and full name for Jane Doe
         else if (strcmp(customer3.password, userPassword) ==0) {
             system("cls");
             printf("Hello %s\n", customer3.fullName);
@@ -146,6 +150,7 @@ void password(void) {
 
         }
 
+        // Password and full name for John Smith
         else if (strcmp(customer4.password, userPassword) ==0) {
             system("cls");
             printf("Hello %s\n", customer4.fullName);
@@ -154,6 +159,7 @@ void password(void) {
 
         }
 
+        // Display if the user types the incorrect password
         else {
             puts("Incorrect password");
             puts(WAIT_FOR_INPUT_LOGIN);
