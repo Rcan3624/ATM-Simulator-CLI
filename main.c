@@ -22,7 +22,7 @@
 int main(void) {
 
     system("cls");
-    puts("ATM Simulator");
+    puts("ATM Simulator Windows version");
     puts("Copyright Ryan Mitchell Cannon 2026\n");
     puts("Press enter to continue");
 
