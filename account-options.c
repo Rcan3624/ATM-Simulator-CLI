@@ -27,7 +27,7 @@ signed short int transaction;
 #define SAVINGS_ACCOUNT_SELECTION "Savings account selected"
 //#define TRANSACTION_LIMIT "Transaction limit reached"
 #define TRANSFERRED_AMOUNT "You transferred $%d\n"
-#define WAIT_FOR_INPUT_ACCOUNT "\nPress enter to continue"
+#define WAIT_FOR_INPUT_ACCOUNT "Press enter to continue"
 #define WITHDRAWN_AMOUNT "You withdrew $%d\n"
 
 
