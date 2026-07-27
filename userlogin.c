@@ -9,7 +9,7 @@
 #include "userlogin.h"
 #include "account-options.h"
 
-#define WAIT_FOR_INPUT_LOGIN
+#define WAIT_FOR_INPUT_LOGIN "Press enter to continue"
 
 
 short int userIndex = 0; // Index for selecting accounts based on the logged-in user
@@ -70,7 +70,7 @@ void login(void) {
             // Prevent CMD from immediately closing May look into better implementation in future updates
             system("cls");
             puts("Goodbye");
-            puts("Press enter to continue");
+            puts(WAIT_FOR_INPUT_LOGIN);
             getchar();  // Flush input buffer to prevent newline bug
             getchar(); // Wait for user to press enter.
             exit(0);
@@ -79,7 +79,7 @@ void login(void) {
         else {
 
             puts("User not found");
-            puts("Press enter to continue");
+            puts(WAIT_FOR_INPUT_LOGIN);
             getchar();  // Flush input buffer to prevent newline bug
             getchar(); // Wait for user to press enter.
             system("cls");
@@ -90,7 +90,7 @@ void login(void) {
     
     // Display after failed username attempts
     puts("ATM restriction is now in place. This program will now close.\n");
-    puts("Press enter to continue");
+    puts(WAIT_FOR_INPUT_LOGIN);
     getchar();  // Flush input buffer to prevent newline bug
     getchar(); // Wait for user to press enter.
     system("cls");
@@ -156,7 +156,7 @@ void password(void) {
 
         else {
             puts("Incorrect password");
-            puts("Press enter to continue");
+            puts(WAIT_FOR_INPUT_LOGIN);
             getchar();  // Flush input buffer to prevent newline bug
             getchar(); // Wait for user to press enter.
             system("cls");
