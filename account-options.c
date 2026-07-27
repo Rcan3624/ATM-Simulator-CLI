@@ -14,7 +14,7 @@ char userOption;
 signed short int transaction;
 //signed short int transactionCount;
 
-// Begin macro definitions
+
 #define ACCOUNT_SELECT "Press 1 for checking account\nPress 2 for savings account\nPress 3 to go back\n"
 #define AMOUNT_PROMPT "Amount: "
 #define CHECKING_ACCOUNT_SELECTION "Checking account selected"
@@ -33,7 +33,7 @@ signed short int transaction;
 
 
 // TODO Make checking and savings accounts global or prevent from having local variables erased: Done(Might look into better implementation in the future)
-
+// TODO Add fast cash
 
  void deposit(void) {
 
@@ -188,12 +188,10 @@ void balance(void) {
             case '1':
                 system("cls");
                 puts(CHECKING_ACCOUNT_SELECTION);
-
                 printf(CURRENT_CHECKING_BALANCE, checkingBalance[userIndex]);
                 puts(WAIT_FOR_INPUT_ACCOUNT);
-                getchar();
-
-                getchar();
+                getchar();  // Flush input buffer to prevent newline bug
+                getchar(); // Wait for user to press enter.
                 system("cls");
                 userIndex = 0; // Reset index to default value to prevent the next user from accessing the incorrect checking and savings account.
                 login();
@@ -203,12 +201,10 @@ void balance(void) {
             case '2':
                 system("cls");
                 puts(SAVINGS_ACCOUNT_SELECTION);
-
                 printf(CURRENT_SAVINGS_BALANCE, savingsBalance[userIndex]);
                 puts(WAIT_FOR_INPUT_ACCOUNT);
-                getchar();
-
-                getchar();
+                getchar();  // Flush input buffer to prevent newline bug
+                getchar(); // Wait for user to press enter.
                 system("cls");
                 userIndex = 0; // Reset index to default value to prevent the next user from accessing the incorrect checking and savings account.
                 login();
@@ -270,22 +266,18 @@ void transfer(void) {
                 printf(AMOUNT_PROMPT);
                 scanf("%3d", &transaction);
 
-
-
                 transactionValidation();
                 savingsOverdraftPrevention();
 
                 savingsBalance[userIndex] -= transaction;
                 checkingBalance[userIndex] += transaction;
 
-
                 printf(TRANSFERRED_AMOUNT, transaction);
                 printf(CURRENT_CHECKING_BALANCE, checkingBalance[userIndex]);
                 printf(CURRENT_SAVINGS_BALANCE, savingsBalance[userIndex]);
                 puts(WAIT_FOR_INPUT_ACCOUNT);
-                getchar();
-
-                getchar();
+                getchar();  // Flush input buffer to prevent newline bug
+                getchar(); // Wait for user to press enter.
                 system("cls");
                 userIndex = 0; // Reset index to default value to prevent the next user from accessing the incorrect checking and savings account.
                 login();
@@ -306,11 +298,9 @@ void transfer(void) {
         }
 }
 
+// Prevent user from entering 0, a negative balance, or a balance above the transaction limit.
 int transactionValidation(void) {
-
-    // Prevent user from entering 0, a negative balance, or a balance above the transaction limit.
-    // Having 0 excluded also prevents letters from being entered.
-    if (transaction < 1 || transaction > 800) {
+     if (transaction < 1 || transaction > 800) {    // Having 0 excluded also prevents letters from being entered.
         puts("Invalid amount\n");
         transactionOption();
 
@@ -335,7 +325,6 @@ int savingsOverdraftPrevention(void) {
     }
     return 0;
 }
-
 
 
 // Transaction selection menu
